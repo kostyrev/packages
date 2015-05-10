@@ -73,6 +73,7 @@ end
 execute "reload apache2" do
   command "apachectl graceful"
   action :nothing
+  only_if do ::File.exists?('/usr/sbin/httpd') end
 end
 
 package %w{
@@ -81,5 +82,4 @@ package %w{
 } do
     action :upgrade
     notifies :run, 'execute[reload apache2]', :immediately
-    only_if do ::File.exists?('/usr/sbin/httpd') end
 end
