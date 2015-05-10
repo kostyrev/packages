@@ -57,10 +57,15 @@ package "#{node['man']['package']['name']}" do
   action :install
 end
 
+if platform_family?('rhel')
+  package 'glibc' do
+    action :upgrade
+  end
+end
+
 package %w{
   openssl
   bash
-  glibc
 } do
     action :upgrade
 end
