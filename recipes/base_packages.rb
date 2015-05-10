@@ -65,11 +65,16 @@ package %w{
     action :upgrade
 end
 
+execute "reload apache2" do
+  command "apachectl graceful"
+  action :nothing
+end
+
 package %w{
   tzdata-java
   tzdata
 } do
     action :upgrade
-    notifies :reload, 'service[apache2]'
+    notifies :run, 'execute[reload apache2]', :immediately
     only_if do ::File.exists?('/usr/sbin/httpd') end
 end
