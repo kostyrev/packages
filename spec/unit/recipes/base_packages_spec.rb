@@ -6,7 +6,7 @@
 
 require 'spec_helper'
 
-describe 'packages::packages' do
+describe 'base_packages::packages' do
 
   context 'When all attributes are default, on an unspecified platform' do
 
@@ -17,6 +17,10 @@ describe 'packages::packages' do
 
     it 'converges successfully' do
       chef_run # This should not raise an error
+    end
+
+    it 'installs screen package' do
+      expect(chef_run).to install_package('screen')
     end
 
   end
