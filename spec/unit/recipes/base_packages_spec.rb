@@ -19,8 +19,8 @@ describe 'packages::base_packages' do
       chef_run # This should not raise an error
     end
 
-    it 'installs screen package' do
-      expect(chef_run).to install_package('screen')
+    it 'installs a bunch of packages' do
+      expect(chef_run).to install_package('screen, bind-utils, telnet, mc, tree, lsof, yum-utils, sysstat, rsync, xfsprogs, file, openssh-clients, make, automake, boost-devel, rrdtool-perl, perl-libwww-perl, htop, bridge-utils, mailx, lynx, libssh2, crontabs, sysfsutils, sg3_utils, ncdu, policycoreutils-python, yum-plugin-changelog, iotop, strace, zip, psmisc, bash-completion, e2fsprogs')
     end
 
   end
