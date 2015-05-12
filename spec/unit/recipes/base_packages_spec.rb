@@ -6,7 +6,7 @@
 
 require 'spec_helper'
 
-describe 'base_packages::packages' do
+describe 'packages::base_packages' do
 
   context 'When all attributes are default, on an unspecified platform' do
 
