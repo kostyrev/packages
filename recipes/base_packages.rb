@@ -43,24 +43,22 @@ package %w(
   action :install
 end
 
-if platform_family?('rhel') && node['platform_version'].to_i >= 6 && node['platform_version'].to_i < 7
-  package %w(
+package %w(
     re2c
     ruby-json
     echoping
   ) do
     action :install
-  end
+    only_if { platform_family?('rhel') && node['platform_version'].to_i >= 6 && node['platform_version'].to_i < 7 }
 end
 
 package node['man']['package']['name'] do
   action :install
 end
 
-if platform_family?('rhel')
-  package 'glibc' do
-    action :upgrade
-  end
+package 'glibc' do
+  action :upgrade
+  only_if { platform_family?('rhel') }
 end
 
 package %w(
