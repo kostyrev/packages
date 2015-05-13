@@ -53,7 +53,7 @@ if platform_family?('rhel') && node['platform_version'].to_i >= 6 && node['platf
   end
 end
 
-package "#{node['man']['package']['name']}" do
+package node['man']['package']['name'] do
   action :install
 end
 
