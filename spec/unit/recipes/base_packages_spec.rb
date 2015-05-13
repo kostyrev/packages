@@ -23,5 +23,12 @@ describe 'packages::base_packages' do
       expect(chef_run).to install_package('screen, bind-utils, telnet, mc, tree, lsof, yum-utils, sysstat, rsync, xfsprogs, file, openssh-clients, make, automake, boost-devel, rrdtool-perl, perl-libwww-perl, htop, bridge-utils, mailx, lynx, libssh2, crontabs, sysfsutils, sg3_utils, ncdu, policycoreutils-python, yum-plugin-changelog, iotop, strace, zip, psmisc, bash-completion, e2fsprogs')
     end
 
+    it 'installs latest openssl and bash packages' do
+      expect(chef_run).to upgrade_package('openssl, bash')
+    end
+
+    it 'executes reload apache only when notified' do
+      expect(chef_run).to_not run_execute('apachectl graceful')
+    end
   end
 end
